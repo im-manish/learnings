@@ -5,7 +5,7 @@ import com.canvera.java.innerclasses.ClassNestedInterface.ClassNestedInterfaceDe
 public class ClassNestedInterface {
 
 	interface ClassNestedInterfaceDemo{
-		public int getSomeThing();
+		int getSomeThing();
 	}
 }
 

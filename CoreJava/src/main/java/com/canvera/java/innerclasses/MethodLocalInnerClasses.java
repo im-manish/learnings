@@ -8,8 +8,8 @@ package com.canvera.java.innerclasses;
 // classs scope will be limited to local method
 public class MethodLocalInnerClasses {
 	
-	private int x=10;
-	private static int y =20;
+	private final int x=10;
+	private static final int y =20;
 	
 	public void methodOne() {
 		int a=10;
@@ -27,7 +27,7 @@ public class MethodLocalInnerClasses {
 	public static void methodOneStatic() {
 		int b=10;
 		class InnerClassStaticMethod {
-			int a=10;
+			final int a=10;
 			public void sum() {
 				System.out.println("Sum = " + (y+a+b));
 			}
