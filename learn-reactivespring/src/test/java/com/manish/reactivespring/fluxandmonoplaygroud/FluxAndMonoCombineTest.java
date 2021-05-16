@@ -7,6 +7,7 @@ package com.manish.reactivespring.fluxandmonoplaygroud;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import java.time.Duration;
@@ -76,7 +77,7 @@ public class FluxAndMonoCombineTest {
         Flux<String> stringFlux = Flux.just("A", "B", "C");
         Flux<String> stringFlux2 = Flux.just("D", "E", "F");
         Flux<String> zip = Flux
-                .zip(stringFlux, stringFlux2, this::combinedElementOfFluxes);// it maintain order but takes more time
+                .zip(stringFlux, stringFlux2, this::combinedElement);// it maintain order but takes more time
         StepVerifier.create(zip.log())
                 .expectSubscription()
                 .expectNext("AD", "BE", "CF")
@@ -84,8 +85,19 @@ public class FluxAndMonoCombineTest {
 
     }
 
-    private String combinedElementOfFluxes(String t1, String t2) {
+    private String combinedElement(String t1, String t2) {
         return StringUtils.join(t1, t2);
+    }
+
+    @Test
+    public void combineMonoUsingZipTest() {
+        Mono<String> stringMono = Mono.just("Manish");
+        Mono<String> stringMono1 = Mono.just("Kumar");
+        Mono<String> zip = Mono.zip(stringMono, stringMono1, this::combinedElement);
+        StepVerifier.create(zip.log())
+                .expectSubscription()
+                .expectNext("ManishKumar")
+                .expectComplete();
     }
 
 }
