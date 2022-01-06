@@ -9,6 +9,7 @@ import java.util.Arrays;
 public class AnagramTest {
 
 	public static void main(String[] args) {
+		File file = new File(args[0]);
 		String str1 = "silent";
 		String str2 = "listen";
 		checkAnagramUsingSorting(str1,str2);
